@@ -37,9 +37,7 @@ class Solution {
 
         // space optimization
         int[] prev = new int[n2+1];
-        for(int i = 0; i <= n2; i++) {
-            prev[0] = 0;
-        }
+        prev[0] = 0;
 
         for(int i = 1; i <= n1; i++) {
             int[] curr = new int[n2+1];
