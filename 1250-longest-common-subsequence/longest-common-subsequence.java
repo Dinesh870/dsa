@@ -37,13 +37,13 @@ class Solution {
 
         // space optimization
         int m = Math.max(n1,n2);
-        int[] prev = new int[m+1];
-        for(int i = 0; i <= m; i++) {
+        int[] prev = new int[n2+1];
+        for(int i = 0; i <= n1; i++) {
             prev[0] = 0;
         }
 
         for(int i = 1; i <= n1; i++) {
-            int[] curr = new int[m+1];
+            int[] curr = new int[n2+1];
             for(int j = 1; j <= n2; j++) {
                 if(text1.charAt(i-1) == text2.charAt(j-1))
                     curr[j] = 1 + prev[j-1];
