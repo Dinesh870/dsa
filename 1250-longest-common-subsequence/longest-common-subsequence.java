@@ -36,9 +36,8 @@ class Solution {
         // return dp[n1][n2];
 
         // space optimization
-        int m = Math.max(n1,n2);
         int[] prev = new int[n2+1];
-        for(int i = 0; i <= n1; i++) {
+        for(int i = 0; i <= n2; i++) {
             prev[0] = 0;
         }
 
