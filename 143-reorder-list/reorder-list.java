@@ -28,29 +28,47 @@ class Solution {
             prev = temp;
             temp = curr;
         }
-        // while(prev != null){
-        //     System.out.print(prev.val+" ");
-        //     prev = prev.next;
-        // }
         return prev;
     }
     public void reorderList(ListNode head) {
-        ListNode mid = findMid(head);
-        ListNode head2 = mid.next;
-        mid.next = null;
-        ListNode temp = head;
+        // ListNode mid = findMid(head);
+        // ListNode head2 = mid.next;
+        // mid.next = null;
+        // ListNode temp = head;
 
-        head2 = reverse(head2);
+        // head2 = reverse(head2);
         
-        while(temp != null && head2 != null) {
-            ListNode th = temp.next;
-            ListNode th2 = head2.next;
+        // while(temp != null && head2 != null) {
+        //     ListNode th = temp.next;
+        //     ListNode th2 = head2.next;
 
-            temp.next = head2;
-            // temp = temp.next;
-            head2.next = th;
-            temp = th;
-            head2 = th2;
+        //     temp.next = head2;
+        //     head2.next = th;
+        //     temp = th;
+        //     head2 = th2;
+        // }
+
+        // method 2:
+        // Using stack
+        Stack<ListNode> st = new Stack<>();
+        ListNode temp = head;
+        while(temp != null) {
+            ListNode t = temp;
+            // t.next = null;
+            st.push(t);
+            temp = temp.next;
         }
+        // System.out.println(st.size());
+        // while(st.size() > 0) System.out.println(st.pop().next);
+        temp = head;
+        int size = st.size()/2;
+        while(size > 0) {
+            ListNode next = temp.next;
+            temp.next = st.pop();
+            temp.next.next = next;
+            temp = next;
+            size--;
+        }
+        temp.next = null;
     }
 }
