@@ -39,12 +39,28 @@ class Solution {
                 dp[i][buy] = profit;
             }
         }
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < 2; j++) {
-                System.out.print(dp[i][j] + " ");
-            }
-            System.out.println();
-        }
+        
         return dp[0][1];
+
+        // space optimization
+        // int[] curr = ne int[2];
+        // for(int i = n-1; i >= 0; i--) {
+        //     for(int buy = 0; buy <= 1; buy++) {
+        //         int profit = 0;
+        //         if(buy == 1) {
+        //             int canbuy = - prices[i] + curr[0];
+        //             int notbuy = 0 + curr[1];
+        //             profit = Math.max(canbuy, notbuy);
+        //         } else {
+        //             int cansell = prices[i] + curr[1];
+        //             int notsell = 0 + curr[0];
+        //             profit = Math.max(cansell, notsell);
+        //         }
+        //         curr[buy] = profit;
+        //     }
+        // }
+
+        // return curr[1];
+
     }
 }
