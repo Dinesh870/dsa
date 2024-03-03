@@ -113,35 +113,57 @@ class Solution {
         /* tarika two*/
         int n = prices.length;
         // memoization
-        int[][] dp = new int[n+1][5];
+        // int[][] dp = new int[n+1][5];
         // for(int[] arr : dp) Arrays.fill(arr, -1);
         // return fun2(0, 0, prices, dp);
 
         // tabulation
         // Base case 1: if i == n then transaction no can be any thing
-        for(int transaction = 0; transaction < 4; transaction++) {
-            dp[n][transaction] = 0;
-        }
-        // Base case 2: if transaction == 4 then i can be any thing
-        for(int i = 0; i < n; i++) {
-            dp[i][4] = 0;
-        }
+        // for(int transaction = 0; transaction < 4; transaction++) {
+        //     dp[n][transaction] = 0;
+        // }
+        // // Base case 2: if transaction == 4 then i can be any thing
+        // for(int i = 0; i < n; i++) {
+        //     dp[i][4] = 0;
+        // }
+
+        // for(int i = n-1; i >= 0; i--) {
+        //     for(int transaction = 3; transaction >= 0; transaction--) {
+        //         int profit = 0;
+        //         if(transaction % 2 == 0) {
+        //             int buy = - prices[i] + dp[i+1][transaction+1];
+        //             int notbuy = 0 + dp[i+1][transaction];
+        //             profit = Math.max(buy, notbuy);
+        //         } else {
+        //             int sell = prices[i] + dp[i+1][transaction+1];
+        //             int notsell = 0 + dp[i+1][transaction];
+        //             profit = Math.max(sell, notsell);
+        //         }
+        //         dp[i][transaction] = profit;
+        //     }
+        // }
+        // return dp[0][0];
+
+        // space optimization
+        int[] prev = new int[5];
 
         for(int i = n-1; i >= 0; i--) {
+            int[] curr = new int[5];
             for(int transaction = 3; transaction >= 0; transaction--) {
                 int profit = 0;
                 if(transaction % 2 == 0) {
-                    int buy = - prices[i] + dp[i+1][transaction+1];
-                    int notbuy = 0 + dp[i+1][transaction];
+                    int buy = - prices[i] + prev[transaction+1];
+                    int notbuy = 0 + prev[transaction];
                     profit = Math.max(buy, notbuy);
                 } else {
-                    int sell = prices[i] + dp[i+1][transaction+1];
-                    int notsell = 0 + dp[i+1][transaction];
+                    int sell = prices[i] + prev[transaction+1];
+                    int notsell = 0 + prev[transaction];
                     profit = Math.max(sell, notsell);
                 }
-                dp[i][transaction] = profit;
+                curr[transaction] = profit;
             }
+            prev = curr;
         }
-        return dp[0][0];
+        return prev[0];
     }
 }
