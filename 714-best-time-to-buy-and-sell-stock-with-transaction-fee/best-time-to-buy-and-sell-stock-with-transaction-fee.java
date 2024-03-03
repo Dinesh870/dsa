@@ -20,7 +20,27 @@ class Solution {
     public int maxProfit(int[] prices, int fee) {
         int n = prices.length;
         int[][] dp = new int[n][2];
-        for(int[] arr : dp) Arrays.fill(arr, -1);
-        return fun(0, 1, prices, fee, dp);
+        // for(int[] arr : dp) Arrays.fill(arr, -1);
+        // return fun(0, 1, prices, fee, dp);
+
+        // tabulation
+
+        for(int i = n-1; i >= 0; i--) {
+            for(int buy = 0; buy <= 1; buy++) {
+                int profit = 0;
+
+                if(buy == 1) {
+                    int canbuy = - prices[i] + fun(i+1, 0, prices, fee, dp);
+                    int notbuy = 0 + fun(i+1, 1, prices, fee, dp);
+                    profit = Math.max(canbuy, notbuy);
+                } else {
+                    int cansell = prices[i] - fee + fun(i+1, 1, prices, fee, dp);
+                    int notsell = 0 + fun(i+1, 0, prices, fee, dp);
+                    profit =  Math.max(cansell, notsell);
+                }
+                dp[i][buy] = profit;
+            }
+        } 
+        return dp[0][1];
     }
 }
