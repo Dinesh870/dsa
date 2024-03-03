@@ -1,27 +1,50 @@
 class Solution {
-    int fun(int i, int buy, int cap, int[] prices, int[][][] dp) {
 
-        if(cap == 0) return 0;
-        if(i==prices.length) return 0;
-        if(dp[i][buy][cap] != -1) return dp[i][buy][cap];
+    
+    // int fun(int i, int buy, int cap, int[] prices, int[][][] dp) {
+
+    //     if(cap == 0) return 0;
+    //     if(i==prices.length) return 0;
+    //     if(dp[i][buy][cap] != -1) return dp[i][buy][cap];
+
+    //     int profit = 0;
+
+    //     if(buy==1) {
+    //         int canbuy = - prices[i] + fun(i+1, 0, cap, prices, dp);
+    //         int notbuy = 0 + fun(i+1, 1, cap, prices, dp);
+    //         profit = Math.max(canbuy, notbuy);
+    //     } else {
+    //         int cansell = prices[i] + fun(i+1, 1, cap-1, prices, dp);
+    //         int notsell = 0 + fun(i+1, 0, cap, prices, dp);
+    //         profit = Math.max(cansell, notsell);
+    //     }
+    //     return dp[i][buy][cap] = profit;
+    // }
+
+    // tarika two
+    int fun2(int i, int transaction, int[] prices, int[][] dp) {
+
+        if(i==prices.length || transaction == 4) return 0;
+        if(dp[i][transaction] != -1) return dp[i][transaction];
 
         int profit = 0;
-
-        if(buy==1) {
-            int canbuy = - prices[i] + fun(i+1, 0, cap, prices, dp);
-            int notbuy = 0 + fun(i+1, 1, cap, prices, dp);
-            profit = Math.max(canbuy, notbuy);
+        if(transaction % 2 == 0) {
+            int buy = - prices[i] + fun2(i+1, transaction+1, prices, dp);
+            int notbuy = 0 + fun2(i+1, transaction, prices, dp);
+            profit = Math.max(buy, notbuy);
         } else {
-            int cansell = prices[i] + fun(i+1, 1, cap-1, prices, dp);
-            int notsell = 0 + fun(i+1, 0, cap, prices, dp);
-            profit = Math.max(cansell, notsell);
+            int sell = prices[i] + fun2(i+1, transaction+1, prices, dp);
+            int notsell = 0 + fun2(i+1, transaction, prices, dp);
+            profit = Math.max(sell, notsell);
         }
-        return dp[i][buy][cap] = profit;
+        return dp[i][transaction] = profit;
     }
     public int maxProfit(int[] prices) {
-        int n = prices.length;
+        /* tarika one */
+
+        // int n = prices.length;
         // memoization
-        int[][][] dp = new int[n+1][2][3];
+        // int[][][] dp = new int[n+1][2][3];
         // for(int[][] arr : dp) {
         //     for(int[] arr2 : arr) {
         //         Arrays.fill(arr2, -1);
@@ -64,26 +87,33 @@ class Solution {
         // return dp[0][1][2];
 
         // space optimization
-        int[][] prev = new int[2][3];
+        // int[][] prev = new int[2][3];
 
-        for(int i = n-1; i >= 0; i--) {
-            for(int buy = 0; buy <= 1; buy++) {
-                for(int cap = 1; cap <= 2; cap++) {
-                    int profit = 0;
+        // for(int i = n-1; i >= 0; i--) {
+        //     for(int buy = 0; buy <= 1; buy++) {
+        //         for(int cap = 1; cap <= 2; cap++) {
+        //             int profit = 0;
 
-                    if(buy==1) {
-                        int canbuy = - prices[i] + prev[0][cap];
-                        int notbuy = 0 + prev[1][cap];
-                        profit = Math.max(canbuy, notbuy);
-                    } else {
-                        int cansell = prices[i] + prev[1][cap-1];
-                        int notsell = 0 + prev[0][cap];
-                        profit = Math.max(cansell, notsell);
-                    }
-                    prev[buy][cap] = profit;
-                }
-            }
-        }
-        return prev[1][2];
+        //             if(buy==1) {
+        //                 int canbuy = - prices[i] + prev[0][cap];
+        //                 int notbuy = 0 + prev[1][cap];
+        //                 profit = Math.max(canbuy, notbuy);
+        //             } else {
+        //                 int cansell = prices[i] + prev[1][cap-1];
+        //                 int notsell = 0 + prev[0][cap];
+        //                 profit = Math.max(cansell, notsell);
+        //             }
+        //             prev[buy][cap] = profit;
+        //         }
+        //     }
+        // }
+        // return prev[1][2];
+
+
+        /* tarika two*/
+        int n = prices.length;
+        int[][] dp = new int[n][4];
+        for(int[] arr : dp) Arrays.fill(arr, -1);
+        return fun2(0, 0, prices, dp);
     }
 }
