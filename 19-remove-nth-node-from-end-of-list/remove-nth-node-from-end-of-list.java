@@ -26,7 +26,6 @@ class Solution {
         }
         if(posff == 1) {
             head = head.next;
-            // return head;
         }
         else {
             ListNode temp = curr;
