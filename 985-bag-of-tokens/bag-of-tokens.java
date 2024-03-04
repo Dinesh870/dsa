@@ -6,8 +6,6 @@ class Solution {
         int i = 0, j = n-1;
         int score = 0;
         int ans = 0;
-        int totalSum = 0;
-        for(int ints : tokens) totalSum += ints;
 
         while(i <= j) {
             if(power >= tokens[i]) {
