@@ -15,9 +15,9 @@ class Solution {
             flag = true;
             i--;
         }
-        if(ans == 0) {
-            return count[100];
-        }
+        // if(ans == 0) {
+        //     return count[100];
+        // }
         return ans+count[i];
     }
 }
