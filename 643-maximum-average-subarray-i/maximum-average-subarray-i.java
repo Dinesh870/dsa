@@ -17,7 +17,6 @@ class Solution {
             temp = temp + nums[q] - nums[p];
             q++;
             p++;
-            System.out.print(sum + " ");
             sum = Math.max(sum, temp);
         }
         return sum/k;
