@@ -33,8 +33,7 @@ class Solution {
         //     }
         // }
 
-        int last = m;
-        if(n == 0) return;
+        // if(n == 0) return;
 
         int j = m-1;
         int i = n-1;
