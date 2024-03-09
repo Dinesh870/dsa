@@ -10,24 +10,24 @@ class Solution {
         return false;
     }
     public boolean searchMatrix(int[][] matrix, int target) {
+        // method 1: T.C. = O(n*log(m))
+
         int row = matrix.length;
-        // int col = matrix[0].length;
+        int col = matrix[0].length;
 
-        for(int i = 0; i < row; i++) {
-            if(find(matrix[i], target)) return true;
-        }
-        return false;
-
-        // int st = 0, end = row*col -1;
-        // while(st <= end) {
-        //     int mid = st + (end-st)/2;
-        //     int i = mid / col;
-        //     int j = mid % col;
-        //     // System.out.println(i+" "+j);
-        //     if(matrix[i][j] == target) return true;
-        //     if(target > matrix[i][j]) st = mid+1;
-        //     else end = mid-1;
+        // for(int i = 0; i < row; i++) {
+        //     if(find(matrix[i], target)) return true;
         // }
         // return false;
+
+        // method 2: T.C. = O(n+m), S.C. = O(1)
+        int i = 0, j = col-1;
+        while(i < row && j >= 0) {
+            if(matrix[i][j] == target) return true;
+            if(target > matrix[i][j]) i++;
+            else j--;
+        }
+
+        return false;
     }
 }
