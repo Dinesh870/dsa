@@ -1,11 +1,5 @@
 class Solution {
 
-    // int fun(int[] nums, int i, int j) {
-
-    //     int suff = nums[i] * fun(nums, i+1, j);
-    //     int pref = nums[j] * fun(nums, i, j-1);
-    // }
-
     int BruteForce(int[] nums) {
         int n = nums.length;
         
@@ -25,20 +19,9 @@ class Solution {
     public int maxProduct(int[] nums) {
         int n = nums.length;
         
-        int maxi = -1000000;
+        int maxi = Integer.MIN_VALUE;
         int pref = 1;
-
-        // for(int i = 0; i < n; i++) {
-        //     pref *= nums[i];
-        //     maxi = Math.max(maxi, pref);
-        //     if(nums[i] == 0) pref = 1;
-        // }
         int suff = 1;
-        // for(int i = n-1; i >=0; i--) {
-        //     suff *= nums[i];
-        //     maxi = Math.max(maxi, suff);
-        //     if(nums[i] == 0) suff = 1;
-        // }
 
         for(int i = 0; i < n; i++) {
             pref *= nums[i];
