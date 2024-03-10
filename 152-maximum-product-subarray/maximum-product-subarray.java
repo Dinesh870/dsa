@@ -1,20 +1,20 @@
 class Solution {
 
-    int BruteForce(int[] nums) {
-        int n = nums.length;
+    // int BruteForce(int[] nums) {
+    //     int n = nums.length;
         
-        int max = Integer.MIN_VALUE;
-        for(int k = 0; k < n; k++) {
-            for(int i = k; i < n; i++) {
-                int mul = 1;
-                for(int j = k; j <= i; j++) {
-                    mul *= nums[j];
-                }
-                max = Math.max(max,mul);
-            }
-        }
-        return max;
-    }
+    //     int max = Integer.MIN_VALUE;
+    //     for(int k = 0; k < n; k++) {
+    //         for(int i = k; i < n; i++) {
+    //             int mul = 1;
+    //             for(int j = k; j <= i; j++) {
+    //                 mul *= nums[j];
+    //             }
+    //             max = Math.max(max,mul);
+    //         }
+    //     }
+    //     return max;
+    // }
 
     public int maxProduct(int[] nums) {
         int n = nums.length;
