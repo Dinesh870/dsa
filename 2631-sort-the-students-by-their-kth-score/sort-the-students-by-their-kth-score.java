@@ -14,21 +14,24 @@ class Solution {
         }
     }
     public int[][] sortTheStudents(int[][] score, int k) {
-        int m = score.length;
-        int n = score[0].length;
-        int[] temp = new int[m];
-        for(int i = 0; i < m; i++) {
-            temp[i] = score[i][k];
-        }
-        // for(int i: temp) System.out.print(i+" ");
-        Arrays.sort(temp);
-        for(int i = 0; i < m; i++) {
-            int idx = search(score, temp[m-i-1], k);
-            // System.out.println(i+" "+idx);
-            if(i != idx) {
-                swap(score, i, idx);
-            }
-        }
+        // int m = score.length;
+        // int n = score[0].length;
+        // int[] temp = new int[m];
+        // for(int i = 0; i < m; i++) {
+        //     temp[i] = score[i][k];
+        // }
+
+        // Arrays.sort(temp);
+
+        // for(int i = 0; i < m; i++) {
+        //     int idx = search(score, temp[m-i-1], k);
+        //     if(i != idx) {
+        //         swap(score, i, idx);
+        //     }
+        // }
+        // return score;
+
+        Arrays.sort(score, (a,b) -> b[k] - a[k]);
         return score;
     }
 }
