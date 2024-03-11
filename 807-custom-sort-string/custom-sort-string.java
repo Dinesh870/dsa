@@ -35,15 +35,15 @@ class Solution {
 
         // method 2:
         int[] store = new int[26];
-        for(int i = 0; i < s.length(); i++) {
+        int sl = s.length();
+        for(int i = 0; i < sl; i++) {
             char ch = s.charAt(i);
             store[ch-'a']++;
         }
-        // for(int i : store) {
-        //     System.out.print(i+" ");
-        // }
+        
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < order.length(); i++) {
+        int ol = order.length();
+        for(int i = 0; i < ol; i++) {
             char ch = order.charAt(i);
             // int x = store[ch-'a'];
             while(store[ch-'a'] > 0) {
