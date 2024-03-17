@@ -55,11 +55,9 @@ class Solution {
             int key = k - nums[i];
             if(!map.containsKey(key)) continue;
 
-            int x = map.get(key);
-            int y = map.get(nums[i]);
             if(key == nums[i] && map.get(key) == 1) continue;
-            if (x > 0 && y > 0) {
-                // System.out.print(x+" "+y+",");
+            
+            if (map.get(key) > 0 && map.get(nums[i]) > 0) {
                 cnt++;
                 map.put(key,map.get(key)-1);
                 map.put(nums[i],map.get(nums[i])-1);
