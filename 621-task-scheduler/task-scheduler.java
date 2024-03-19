@@ -8,7 +8,6 @@ class Solution {
                 map.put(i,x+1);
             }
         }
-        int[] frq = new int[26];
         
         PriorityQueue<Pair<Character,Integer>> pq = new PriorityQueue<>((a,b)-> b.getValue() - a.getValue());
         int size = map.size();
