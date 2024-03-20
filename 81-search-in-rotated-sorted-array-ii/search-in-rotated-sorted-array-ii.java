@@ -2,7 +2,6 @@ class Solution {
     public boolean search(int[] nums, int target) {
     
         int n = nums.length;
-        System.out.println(n);
         int st = 0, end = n-1;
 
         while(st <= end) {
@@ -15,7 +14,6 @@ class Solution {
                 end--;
                 continue;
             }
-
 
             // left sorted array
             if(nums[st] <= nums[mid]) {
