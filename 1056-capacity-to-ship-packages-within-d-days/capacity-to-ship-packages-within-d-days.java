@@ -41,6 +41,7 @@ class Solution {
 
         int ans = 0;
         while(minCapacity <= maxCapacity) {
+
             int capacity = minCapacity + (maxCapacity-minCapacity)/2;
             int sum = 0, days = cnt;
 
@@ -52,12 +53,15 @@ class Solution {
                 } else {
                     sum += i;
                 }
+
+                if(days <= 0) break;
             }
 
             if(days > 0) {
                 ans = capacity;
                 maxCapacity = capacity-1;
             }else minCapacity = capacity+1;
+
         }
         return ans;
 
