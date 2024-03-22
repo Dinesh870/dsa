@@ -68,7 +68,7 @@ class Solution {
     }
 
     public int shipWithinDays(int[] weights, int days) {
-        int n = weights.length;
+        
         // return fun(weights, days);
 
         return binarySearch(weights, days);
