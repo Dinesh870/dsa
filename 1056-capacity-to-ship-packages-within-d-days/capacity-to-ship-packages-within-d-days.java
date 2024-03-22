@@ -1,34 +1,34 @@
 class Solution {
 
     // method 1:
-    int fun(int[] weights, int cnt) {
-        int minCapacity = 0, maxCapacity = 0;
-        for(int i : weights) {
-            minCapacity = Math.max(minCapacity, i);
-            maxCapacity += i;
-        }
+    // int fun(int[] weights, int cnt) {
+    //     int minCapacity = 0, maxCapacity = 0;
+    //     for(int i : weights) {
+    //         minCapacity = Math.max(minCapacity, i);
+    //         maxCapacity += i;
+    //     }
 
-       while(minCapacity <= maxCapacity) {
-             int sum = 0;
-             int days = cnt;
+    //    while(minCapacity <= maxCapacity) {
+    //          int sum = 0;
+    //          int days = cnt;
 
-            for(int i : weights) {
+    //         for(int i : weights) {
                 
-                if(sum + i > minCapacity) {
-                    days--;
-                    sum = i;
-                } else {
-                    sum += i;
-                }
+    //             if(sum + i > minCapacity) {
+    //                 days--;
+    //                 sum = i;
+    //             } else {
+    //                 sum += i;
+    //             }
 
-            }
-            System.out.print(days+" ");
-            if(days > 0) return minCapacity;
-            minCapacity++;
+    //         }
+    //         System.out.print(days+" ");
+    //         if(days > 0) return minCapacity;
+    //         minCapacity++;
 
-       }
-       return 0;
-    }
+    //    }
+    //    return 0;
+    // }
 
     // method 2: Binary search
     int binarySearch(int[] weights, int cnt) {
