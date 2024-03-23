@@ -54,12 +54,10 @@ class Solution {
         ListNode temp = head;
         while(temp != null) {
             ListNode t = temp;
-            // t.next = null;
             st.push(t);
             temp = temp.next;
         }
-        // System.out.println(st.size());
-        // while(st.size() > 0) System.out.println(st.pop().next);
+
         temp = head;
         int size = st.size()/2;
         while(size > 0) {
