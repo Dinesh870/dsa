@@ -16,14 +16,27 @@ class Solution {
         // return ans+1;
 
         // better
-        Arrays.sort(nums);
-        int ans = 1;
+        // Arrays.sort(nums);
+        // int ans = 1;
+        // for(int i = 0; i < nums.length; i++) {
+        //     if(nums[i] <= 0) continue;
+        //     if(i+1 < nums.length && nums[i] == nums[i+1]) continue;
+        //     if(nums[i] != ans) return ans;
+        //     else ans++;
+        // }
+        // return ans;
+
+        // Best solution
+        Set<Integer> set = new HashSet<>();
+        int max = 0;
         for(int i = 0; i < nums.length; i++) {
             if(nums[i] <= 0) continue;
-            if(i+1 < nums.length && nums[i] == nums[i+1]) continue;
-            if(nums[i] != ans) return ans;
-            else ans++;
+            set.add(nums[i]);
+            max = Math.max(nums[i], max);
         }
-        return ans;
+        for(int i = 1; i <= 1e5; i++) {
+            if(!set.contains(i)) return i;
+        }
+        return max+1;
     }
 }
