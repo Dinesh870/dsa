@@ -6,13 +6,8 @@ class Solution {
         int ans = 0;
 
         while(right < n) {
-            if(nums[right] == 1) {
-                ans = Math.max(ans, right - left+1);
-                right++;
-            } else {
+            if(nums[right] == 0) {
                 if(zeros < k) {
-                    ans = Math.max(ans, right-left+1);
-                    right++;
                     zeros++;
                 } else {
                     while(zeros >= k) {
@@ -20,10 +15,12 @@ class Solution {
                         left++;
                     }
                     zeros++;
-                    ans = Math.max(ans, right-left+1);
-                    right++;
+                    // ans = Math.max(ans, right-left+1);
+                    // right++;
                 }
             }
+            ans = Math.max(ans, right-left+1);
+            right++;
         }
         return ans;
     }
