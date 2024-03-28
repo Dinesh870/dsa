@@ -38,7 +38,7 @@ class Solution {
                     set.remove(s.charAt(left));
                     left++;
                 }
-                set.remove(s.charAt(left));
+                // set.remove(s.charAt(left));
                 left++;
                 set.add(c);
                 // ans = Math.max(ans,set.size());
