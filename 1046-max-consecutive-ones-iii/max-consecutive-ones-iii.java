@@ -7,17 +7,14 @@ class Solution {
 
         while(right < n) {
             if(nums[right] == 0) {
-                if(zeros < k) {
-                    zeros++;
-                } else {
+                // if(zeros < k) zeros++;
+                // else {
                     while(zeros >= k) {
                         if(nums[left] == 0) zeros--;
                         left++;
                     }
                     zeros++;
-                    // ans = Math.max(ans, right-left+1);
-                    // right++;
-                }
+                // }
             }
             ans = Math.max(ans, right-left+1);
             right++;
