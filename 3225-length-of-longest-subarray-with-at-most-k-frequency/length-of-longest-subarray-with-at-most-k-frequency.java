@@ -7,9 +7,7 @@ class Solution {
         for(int j = 0; j < nums.length; j++) {
             if(!map.containsKey(nums[j])) {
                 map.put(nums[j],1);
-                if(map.get(nums[j]) <= k) {
-                    ans = Math.max(ans, j-i+1);
-                }
+                if(map.get(nums[j]) <= k) ans = Math.max(ans, j-i+1);
             }
             else {
                 int x = map.get(nums[j]);
