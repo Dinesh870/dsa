@@ -39,7 +39,7 @@ class Solution {
                     left++;
                 }
                 left++;
-                set.add(c);
+                // set.add(c);
             }
         }
         return ans;
