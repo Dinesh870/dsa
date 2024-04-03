@@ -1,53 +1,43 @@
 class Solution {
+    
+    boolean dfs(char[][] board, int i, int j, String word, int k, int[][] visit) {
 
-    int n; int m; 
-    boolean isvaild(int x, int y){
-        if(x<0 || x >= n || y<0 || y>= m)
-            return false; 
+        if(k >= word.length()) return true;
+        if(i < 0 || j < 0 || i >= board.length || j >= board[0].length) return false;
+        if(visit[i][j] == 1) return false;
 
-        return true; 
-    }
-    int[] arr ={0,0,1,-1}; 
-    int[] arr1 = {1,-1,0,0}; 
-
-    boolean ans = false; 
-
-    void dfs(char[][] board, int crr_x, int crr_y, String word, int k, int[][] visit) {
+        // go right
+        if(board[i][j] == word.charAt(k)) {                                                                                                                                      
+            visit[i][j] = 1;
+            k++;
+        } else {
+            // visit[i][j] = 1;
+            return false;
+        }    
         
-        if(ans) return; 
+        boolean right = dfs(board, i, j+1, word, k, visit);
 
-        visit[crr_x][crr_y]=1;  
+        boolean left = dfs(board, i, j-1, word, k, visit);
+        boolean bottom = dfs(board, i+1, j, word, k, visit);
+        boolean up = dfs(board, i-1, j, word, k, visit);
 
-        if(k==word.length()){
-            ans = true; 
-            return; 
-        }
-        // System.out.print(crr_x+" "+crr_y); 
-        for(int i=0; i<4; i++){
-            int x = crr_x + arr[i]; 
-            int y = crr_y + arr1[i]; 
-            // System.out.print(x+" "+y); 
-            if(isvaild(x,y) && visit[x][y]!=1 && word.charAt(k)==board[x][y]){ 
-                    // System.out.print(x+" "+y); 
-                    dfs(board,x,y,word,k+1,visit); 
-            }
-        } 
-       visit[crr_x][crr_y]=0; 
+         visit[i][j] = 0;
+        return right || bottom || up || left;
     }
     public boolean exist(char[][] board, String word) {
-         n = board.length;
-         m = board[0].length;
+        int n = board.length;
+        int m = board[0].length;
+        if(m*n < word.length()) return false;
+        int[][] visit = new int[n][m];
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 if(word.charAt(0) == board[i][j]) {
-                    int[][] visit = new int[n][m];
-                    dfs(board, i, j, word, 1, visit);
-                    if(ans) return true; 
+                    if(dfs(board, i, j, word, 0, visit)) return true;
                 }
             }
 
         }
-        return ans; 
+        return false;
     }
 }
