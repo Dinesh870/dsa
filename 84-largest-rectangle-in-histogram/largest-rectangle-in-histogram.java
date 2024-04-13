@@ -79,16 +79,16 @@ class Solution {
         // method 3:
 
         int[] leftS = leftSmaller(heights);
-        for(int i : leftS) System.out.print(i+" ");
-        System.out.println();
+        // for(int i : leftS) System.out.print(i+" ");
+        // System.out.println();
         int[] rightS = rightSmaller(heights);
-        for(int i : rightS) System.out.print(i+" ");
-        System.out.println();
+        // for(int i : rightS) System.out.print(i+" ");
+        // System.out.println();
 
         // int ans = 0;
         for(int i = 0; i < n; i++) {
             int t = (rightS[i] - leftS[i]+1) * heights[i];
-            System.out.print(t+" ");
+            // System.out.print(t+" ");
             ans = Math.max(ans, t);
         }
         return ans;
