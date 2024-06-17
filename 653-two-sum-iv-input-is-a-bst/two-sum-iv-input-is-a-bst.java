@@ -14,6 +14,7 @@
  * }
  */
 class Solution {
+
     void helper(TreeNode root, List<Integer> list) {
         if(root == null) return;
 
@@ -33,15 +34,31 @@ class Solution {
         }
         return false;
     }
+
+    boolean inorder(TreeNode root, int k, Set<Integer> set) {
+        if(root == null) return false;
+
+        int diff = k - root.val;
+        if(set.contains(diff)) return true;
+
+        set.add(root.val);
+
+        return inorder(root.left, k, set) || inorder(root.right, k, set);
+    }
     public boolean findTarget(TreeNode root, int k) {
         // method 1:
-        List<Integer> list = new ArrayList<>();
-        helper(root, list);
-        if(list.size() == 1) {
-            return false;
-        }
+        // List<Integer> list = new ArrayList<>();
+        // helper(root, list);
+        // if(list.size() == 1) {
+        //     return false;
+        // }
 
-        
-        return linearSearch(list, k);
+        // return linearSearch(list, k);
+
+
+        // method 2:
+        Set<Integer> set = new HashSet<>();
+
+        return inorder(root, k, set);
     }
 }
