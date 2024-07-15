@@ -19,10 +19,36 @@ class Solution {
         int n = boxes.length();
         int[] ans = new int[n];
 
-        for(int i = 0; i < n; i++) {
-            ans[i] = countOnes(boxes, i, n);
+        // method 1: 
+        // for(int i = 0; i < n; i++) {
+        //     ans[i] = countOnes(boxes, i, n);
+        // }
+
+        // return ans;
+
+        // method 2:
+        int[] left = new int[n];
+        int[] right = new int[n];
+
+        int cnt = boxes.charAt(0) - '0';
+
+        // finding left possible way to move the boxes
+        for(int i = 1; i < n; i++) {
+            left[i] = left[i-1] + cnt;
+            cnt += (boxes.charAt(i) - '0');
         }
 
+        // finding right possible way to move the boxes
+        cnt = boxes.charAt(n-1) - '0';
+        for(int i = n-2; i >= 0; i--) {
+            right[i] = right[i+1] + cnt;
+            cnt += (boxes.charAt(i) - '0');
+        }
+
+        // ans = left + right
+        for(int i = 0; i < n; i++) {
+            ans[i] = left[i] + right[i];
+        }
         return ans;
     }
 }
