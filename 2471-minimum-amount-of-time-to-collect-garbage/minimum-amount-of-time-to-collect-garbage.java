@@ -1,6 +1,7 @@
 class Solution {
     public int garbageCollection(String[] garbage, int[] travel) {
-        int m = 0, p = 0, g = 0;
+        // int m = 0, p = 0, g = 0;
+        int ans = 0;
 
         int n = garbage.length;
         boolean m_first = false, p_first = false, g_first = false;
@@ -12,20 +13,24 @@ class Solution {
                 char ch = s.charAt(j);
                 if(ch == 'M') {
                     m_first = true;
-                    m++;
+                    // m++;
+                    // ans++;
                 } else if(ch == 'P') {
                     p_first = true;
-                    p++;
+                    // p++;
+                    // ans++;
                 } else {
                     g_first = true;
-                    g++;
+                    // g++;
+                    // ans++;
                 }
+                ans++;
             }
 
             if(i-1 >= 0) {
-                if(m_first) m += travel[i-1];
-                if(p_first) p += travel[i-1];
-                if(g_first) g += travel[i-1];
+                if(m_first) ans += travel[i-1];
+                if(p_first) ans += travel[i-1];
+                if(g_first) ans += travel[i-1];
             }
         }
 
@@ -67,6 +72,7 @@ class Solution {
         //     }
         // }
 
-        return m+p+g;
+        // return m+p+g;
+        return ans;
     }
 }
