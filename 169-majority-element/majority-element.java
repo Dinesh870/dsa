@@ -1,31 +1,31 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        int l = nums.length;
-        int max = 1, count = 1, indexf = 0,indexI=0,ind = 0;
-        Arrays.sort(nums);
+        // int l = nums.length;
+        // int max = 1, count = 1, indexf = 0,indexI=0,ind = 0;
+        // Arrays.sort(nums);
 
-        for(int i = 0; i < l-1; i++){
-            if(nums[i]==nums[i+1]){
-                count++;
-                indexI = i;
-            }
-            else{
-                if(count > max){
-                    max = count;
-                    count = 1;
-                    ind = indexI;
-                }
-            }
-        }
-        if(count > max){
-            max = count;
-            if(max > l/2)
-            indexf = indexI;
-        }else{
-           if(max > l/2) indexf = ind;
-        }
+        // for(int i = 0; i < l-1; i++){
+        //     if(nums[i]==nums[i+1]){
+        //         count++;
+        //         indexI = i;
+        //     }
+        //     else{
+        //         if(count > max){
+        //             max = count;
+        //             count = 1;
+        //             ind = indexI;
+        //         }
+        //     }
+        // }
+        // if(count > max){
+        //     max = count;
+        //     if(max > l/2)
+        //     indexf = indexI;
+        // }else{
+        //    if(max > l/2) indexf = ind;
+        // }
 
-        return nums[indexf];
+        // return nums[indexf];
 
         // method 2: using HashMap
         // Map<Integer,Integer> map = new HashMap<>();
@@ -42,5 +42,18 @@ class Solution {
         //     if(map.get(i) > n/2) return i;
         // }
         // return 0;
+
+        // using moore's voting algorithm
+        int count = 0;
+        int ele = 0;
+
+        for(int i = 0; i < nums.length; i++) {
+            if(count == 0) {
+                count = 1;
+                ele = nums[i];
+            } else if(ele != nums[i]) count--;
+            else count++;
+        }
+        return ele;
     }
 }
